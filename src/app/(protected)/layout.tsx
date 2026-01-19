@@ -1,17 +1,13 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { ThemeToggle } from "@/components/mode-toggle"
-import { SidebarActionTrigger } from "@/components/sidebar-trigger-button"
+import { ProtectedHeader } from "@/components/protected-header"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
       <main className="w-full">
-        <div className="py-2 px-4 flex justify-between items-center">
-          <SidebarActionTrigger />
-          <ThemeToggle />
-        </div>
+        <ProtectedHeader />
         {children}
       </main>
     </SidebarProvider>
