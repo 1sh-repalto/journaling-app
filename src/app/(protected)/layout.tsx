@@ -8,7 +8,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <main className="w-full">
         <ProtectedHeader />
-        {children}
+        <div className="m-4">
+          {children}
+        </div>
       </main>
     </SidebarProvider>
   )
