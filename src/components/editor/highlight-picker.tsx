@@ -60,7 +60,7 @@ export function HighlightPicker({ editor }: HighlightPickerProps) {
                             key={ highlight.color }
                             pressed={ editorState.currentHighlightColor === highlight.color }
                             onPressedChange={() => setHighlight(highlight.color)}
-                            className="flex items-center rounded-full hover:bg-secondary"
+                            className="flex items-center rounded-f hover:bg-secondary"
                             aria-label={`Highlight ${highlight.name}`}
                         >
                             <span

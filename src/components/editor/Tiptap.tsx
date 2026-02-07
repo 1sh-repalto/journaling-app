@@ -2,12 +2,20 @@
 
 import { useEditor, EditorContent, Editor, useEditorState } from '@tiptap/react'
 import { FloatingMenu, BubbleMenu } from '@tiptap/react/menus'
-import StarterKit from '@tiptap/starter-kit'
+import Heading from '@tiptap/extension-heading'
 import { Toggle } from "@/components/ui/toggle"
-import { Bold, Highlighter, Italic, Underline, Undo } from 'lucide-react'
+import { Bold as BoldIcon, Italic as ItalicIcon, Underline as UnderlineIcon } from 'lucide-react'
 import Highlight from '@tiptap/extension-highlight'
 import UndoRedoSection from './undo-redo-section'
 import { HighlightPicker } from './highlight-picker'
+import HeadingPicker from './heading-picker'
+import Paragraph from '@tiptap/extension-paragraph'
+import Document from '@tiptap/extension-document'
+import Text from '@tiptap/extension-text'
+import History from '@tiptap/extension-history'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Underline from '@tiptap/extension-underline'
 
 const Toolbar = ({ editor }: { editor: Editor }) => {
     const editorState = useEditorState({ editor, selector: (ctx) => {
@@ -25,13 +33,15 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
 
         <HighlightPicker editor={ editor } />
 
+        <HeadingPicker editor={ editor } />
+
         <Toggle
           size={ "sm" }
           pressed={ editorState.isBold }
           onPressedChange={ () => editor.chain().focus().toggleBold().run() }
           aria-label="Toggle Bold"
         >
-          <Bold />
+          <BoldIcon />
         </Toggle>
 
         <Toggle
@@ -40,7 +50,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           onPressedChange={ () => editor.chain().focus().toggleItalic().run() }
           aria-label="Toggle Italic"
         >
-          <Italic />
+          <ItalicIcon />
         </Toggle>
 
         <Toggle
@@ -49,7 +59,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           onPressedChange={ () => editor.chain().focus().toggleUnderline().run() }
           aria-label="Toggle Underline"
         >
-          <Underline />
+          <UnderlineIcon />
         </Toggle>
       </>
     )
@@ -57,7 +67,19 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
 
 export default function Tiptap() {
   const editor = useEditor({
-    extensions: [StarterKit, Highlight.configure({ multicolor: true })], // define your extension array
+    extensions: [
+      Document,
+      Paragraph,
+      Text,
+      Bold,
+      Italic,
+      Underline,
+      Highlight.configure({ multicolor: true }),
+      Heading.configure({
+        levels: [2, 3, 4],
+      }),
+      History,
+    ],
     content: '<p>Hello World!</p>', // initial content
     immediatelyRender: false,
   })
