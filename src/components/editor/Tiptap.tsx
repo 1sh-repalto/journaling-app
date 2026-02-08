@@ -4,7 +4,7 @@ import { useEditor, EditorContent, Editor, useEditorState } from '@tiptap/react'
 import { FloatingMenu, BubbleMenu } from '@tiptap/react/menus'
 import Heading from '@tiptap/extension-heading'
 import { Toggle } from "@/components/ui/toggle"
-import { Bold as BoldIcon, Italic as ItalicIcon, Underline as UnderlineIcon } from 'lucide-react'
+import { Bold as BoldIcon, Italic as ItalicIcon, Quote, Underline as UnderlineIcon } from 'lucide-react'
 import Highlight from '@tiptap/extension-highlight'
 import UndoRedoSection from './undo-redo-section'
 import { HighlightPicker } from './highlight-picker'
@@ -16,6 +16,9 @@ import History from '@tiptap/extension-history'
 import Bold from '@tiptap/extension-bold'
 import Italic from '@tiptap/extension-italic'
 import Underline from '@tiptap/extension-underline'
+import Blockquote from '@tiptap/extension-blockquote'
+import TextAlign from '@tiptap/extension-text-align'
+import TextAlignGroup from './text-align-group'
 
 const Toolbar = ({ editor }: { editor: Editor }) => {
     const editorState = useEditorState({ editor, selector: (ctx) => {
@@ -24,6 +27,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
         isItalic: ctx.editor.isActive("italic") ?? false,
         isUnderline: ctx.editor.isActive("underline") ?? false,
         isHighlight: ctx.editor.isActive("highlight") ?? false,
+        isBlockquote: ctx.editor.isActive("blockquote") ?? false,
       }
     }})
 
@@ -34,6 +38,16 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
         <HighlightPicker editor={ editor } />
 
         <HeadingPicker editor={ editor } />
+
+        <TextAlignGroup editor={ editor } />
+
+        <Toggle
+          size={ "sm" }
+          pressed={ editorState.isBlockquote }
+          onPressedChange={ () => editor.chain().focus().toggleBlockquote().run() }
+        >
+          <Quote />
+        </Toggle>
 
         <Toggle
           size={ "sm" }
@@ -74,7 +88,11 @@ export default function Tiptap() {
       Bold,
       Italic,
       Underline,
+      Blockquote,
       Highlight.configure({ multicolor: true }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph']
+      }),
       Heading.configure({
         levels: [2, 3, 4],
       }),

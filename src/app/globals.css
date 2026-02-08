@@ -155,3 +155,9 @@
 .ProseMirror p {
   margin-bottom: 0.75em;
 }
+
+.ProseMirror blockquote {
+  border-left: 3px solid var(--secondary-foreground);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+}
