@@ -75,5 +75,5 @@ export default function HeadingPicker({ editor }: HeadingPickerProps) {
             ))}
             </DropdownMenuContent>
         </DropdownMenu>
-)
+    )
 }

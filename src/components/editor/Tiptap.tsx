@@ -19,6 +19,8 @@ import Underline from '@tiptap/extension-underline'
 import Blockquote from '@tiptap/extension-blockquote'
 import TextAlign from '@tiptap/extension-text-align'
 import TextAlignGroup from './text-align-group'
+import { BulletList, ListItem, OrderedList, TaskList, TaskItem } from '@tiptap/extension-list'
+import ListPicker from './list-picker'
 
 const Toolbar = ({ editor }: { editor: Editor }) => {
     const editorState = useEditorState({ editor, selector: (ctx) => {
@@ -41,10 +43,13 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
 
         <TextAlignGroup editor={ editor } />
 
+        <ListPicker editor={ editor } />
+
         <Toggle
           size={ "sm" }
           pressed={ editorState.isBlockquote }
           onPressedChange={ () => editor.chain().focus().toggleBlockquote().run() }
+          aria-label="Toggle Blockquote"
         >
           <Quote />
         </Toggle>
@@ -89,6 +94,11 @@ export default function Tiptap() {
       Italic,
       Underline,
       Blockquote,
+      BulletList,
+      OrderedList,
+      TaskList,
+      ListItem,
+      TaskItem,
       Highlight.configure({ multicolor: true }),
       TextAlign.configure({
         types: ['heading', 'paragraph']
