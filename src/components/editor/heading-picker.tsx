@@ -54,21 +54,23 @@ export default function HeadingPicker({ editor }: HeadingPickerProps) {
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="start" className="space-y-1">
+            <DropdownMenuContent 
+                align="start" 
+                className="space-y-1"
+                onCloseAutoFocus={(e) => {
+                    e.preventDefault()
+                    editor.commands.focus()
+                }}
+            >
             {HEADINGS.map((heading) => (
                 <DropdownMenuItem
                     key={heading.level}
-                    className="cursor-pointer outline-none"
+                    className={ `cursor-pointer outline-none ${editorState.currentLevel === heading.level ? "bg-secondary" : ""}` }
+                    onClick={ () => setHeading(heading.level) }
                     aria-label={ `Heading ${heading.level}` }
                 >
-                    <Toggle
-                        pressed={ editorState.currentLevel === heading.level }
-                        onPressedChange={() => setHeading(heading.level)}
-                        className="flex gap-4 w-full"
-                    >
-                        <heading.icon />
-                        <span>{heading.label}</span>
-                    </Toggle>
+                    <heading.icon />
+                    <span>{heading.label}</span>
                 </DropdownMenuItem>
             ))}
             </DropdownMenuContent>
