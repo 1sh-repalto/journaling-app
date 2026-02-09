@@ -27,7 +27,9 @@ export default function Editor() {
                     </Button>
                 </div>
 
-                <Tiptap />
+                <div className="mt-5">
+                    <Tiptap />
+                </div>
             </div>
         </div>
     )

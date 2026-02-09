@@ -8,6 +8,7 @@ export default function UndoRedoSection({ editor }: { editor: Editor }) {
                 editor={ editor }
                 action="undo"
                 hideWhenUnavailable={ false }
+                className="cursor-pointer"
                 aria-label="Undo Button"
             />
             
@@ -15,6 +16,7 @@ export default function UndoRedoSection({ editor }: { editor: Editor }) {
                 editor={ editor }
                 action="redo"
                 hideWhenUnavailable={ false }
+                className="cursor-pointer"
                 aria-label="Redo Button"
             />
         </div>
