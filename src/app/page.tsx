@@ -11,8 +11,8 @@ export default async function LandingPage() {
   }
 
   return (
-    <main className="min-h-screen">
-      Landing Page
+    <main className="min-h-screen flex flex-col items-center justify-center gap-4">
+      Landing Page (Need to start work on this)
 
       <Link href="/sign-in">
         <Button>Sign In</Button>

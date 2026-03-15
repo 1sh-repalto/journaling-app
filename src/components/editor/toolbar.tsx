@@ -11,7 +11,7 @@ interface ToolbarProps {
 
 export default function Toolbar ({ editor }: ToolbarProps) {
     return (
-      <div className="h-10 flex items-center justify-evenly w-auto mx-auto">
+      <div className="sticky top-0 z-100 w-full bg-background flex items-center justify-evenly mx-auto">
         <UndoRedoSection editor={ editor } />
 
         <Separator orientation="vertical" className="h-full"/>

@@ -9,8 +9,8 @@ export default function Editor() {
     const [title, setTitle] = useState("");
 
     return (
-        <div className="w-full">
-            <div className="max-w-5xl mx-auto">
+        <div className="w-full h-full">
+            <div className="max-w-5xl mx-auto h-full flex flex-col">
                 <input 
                     value={ title }
                     onChange={(e) => setTitle(e.target.value)}
@@ -18,7 +18,7 @@ export default function Editor() {
                     className="w-full font-bold text-3xl bg-transparent border-none focus:outline-none"
                 />
 
-                <div className="mt-5">
+                <div className="">
                     <Button
                         variant={ "outline" }
                         className="rounded-full"
@@ -27,9 +27,7 @@ export default function Editor() {
                     </Button>
                 </div>
 
-                <div className="mt-5">
-                    <Tiptap />
-                </div>
+                <Tiptap />
             </div>
         </div>
     )

@@ -12,15 +12,16 @@ export default function Tiptap() {
     immediatelyRender: false,
   })
 
-  if(!editor) return null;
+  if (!editor) return null;
 
   return (
-    <>
-  
-      <Toolbar editor={ editor } />
-      <EditorContent editor={editor} />
+    <div className='flex flex-col flex-1'>
+      <Toolbar editor={editor} />
+      <div className='h-full'>
+        <EditorContent editor={editor} className='h-full'/>
+      </div>
       {/* <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
       <BubbleMenu editor={editor}>This is the bubble menu</BubbleMenu> */}
-    </>
+    </div>
   )
 }
